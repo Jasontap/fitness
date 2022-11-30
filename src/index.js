@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
+import { config } from './context';
 
 
 
 const App = () => {
   const [activities, setActivities] = useState([]);
   
-  
   const getActivities = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/activities", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${config.url}/api/activities`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const results = await response.json();
       setActivities(results);
     } catch (ex) {
